@@ -1,0 +1,12 @@
+{
+  "name": "moview",
+  "displayName": "moview",
+  "expo": {
+    "name": "moview",
+    "slug": "moview",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
