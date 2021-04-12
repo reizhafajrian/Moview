@@ -1,12 +1,35 @@
 {
-  "name": "moview",
-  "displayName": "moview",
+  "name": "Moview",
+  "displayName": "Moview",
   "expo": {
-    "name": "moview",
-    "slug": "moview",
+    "name": "Moview",
+    "slug": "Moview",
     "version": "1.0.0",
+    "icon": "./src/assets/icon/icon.png",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icon/icon.png"
+      }
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "expo.ts",
+        "expo.tsx",
+        "expo.js",
+        "expo.jsx",
+        "ts",
+        "tsx",
+        "js",
+        "jsx",
+        "json",
+        "wasm",
+        "svg"
+      ]
+    },
+    "description": ""
   }
 }
