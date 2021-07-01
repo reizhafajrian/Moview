@@ -2,4 +2,7 @@
 apps for review Movie
 
 
-#Preview
+# Preview
+
+![Moview](https://github.com/reizhafajrian/Moview/blob/master/gif/preview.gif)
+
