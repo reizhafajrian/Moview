@@ -1,13 +1,15 @@
 import { useTheme } from "@react-navigation/native";
 import React from "react";
-import { View, Text,StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { getUser } from "../../utils/Firebase";
 
-export default function DetailUserItem({title,name,style}) {
-    const { colors } = useTheme();
+function DetailUserItem({ title, name, style }) {
+  const { colors } = useTheme();
+
   return (
     <View style={styles.pages(style)}>
       <View style={{ height: 27 }} />
-      <Text style={{ color: colors.textGrey, fontSize: 15, fontWeight: "500"}}>
+      <Text style={{ color: colors.textGrey, fontSize: 15, fontWeight: "500" }}>
         {title}
       </Text>
       <Text style={{ color: "white", fontSize: 15, fontWeight: "500" }}>
@@ -16,8 +18,11 @@ export default function DetailUserItem({title,name,style}) {
     </View>
   );
 }
-const styles=StyleSheet.create({
-    pages:(styles)=>({
-        alignItems:styles===false? "flex-start":"center"
-    })
-})
+
+const styles = StyleSheet.create({
+  pages: (styles) => ({
+    alignItems: styles === false ? "flex-start" : "center",
+  }),
+});
+export  const MemoDetailUserItem = React.memo(DetailUserItem);
+

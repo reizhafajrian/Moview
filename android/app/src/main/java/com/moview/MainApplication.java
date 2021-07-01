@@ -6,6 +6,9 @@ import android.net.Uri;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
+import com.microsoft.codepush.react.CodePush;
+
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -22,6 +25,7 @@ import expo.modules.constants.ConstantsPackage;
 import expo.modules.permissions.PermissionsPackage;
 import expo.modules.filesystem.FileSystemPackage;
 import expo.modules.updates.UpdatesController;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -43,6 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       List<ReactPackage> packages = new PackageList(this).getPackages();
       packages.add(new ModuleRegistryAdapter(mModuleRegistryProvider));
+ 
+
       return packages;
     }
 
@@ -53,11 +59,12 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected @Nullable String getJSBundleFile() {
-      if (BuildConfig.DEBUG) {
-        return super.getJSBundleFile();
-      } else {
-        return UpdatesController.getInstance().getLaunchAssetFile();
-      }
+      // if (BuildConfig.DEBUG) {
+      //   return super.getJSBundleFile();
+      // } else {
+      //   return UpdatesController.getInstance().getLaunchAssetFile();
+      // }
+       return CodePush.getJSBundleFile();
     }
 
     @Override

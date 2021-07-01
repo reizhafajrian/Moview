@@ -5,6 +5,9 @@ import ICSearchActive from "./ic_search_active.svg"
 import ICHome from "./ic_home.svg"
 import ICHomeActive from "./ic_home_active.svg"
 import ICSearchWhite from "./ic_search_white.svg"
+import ICStar from "./ic_star.svg"
+import ICPLAY from "./ic_play.svg"
+import ICBACK from "./ic_back.svg"
 
 export{
     ICHome,
@@ -14,4 +17,7 @@ export{
     ICSearchWhite,
     ICUser,
     ICUserActive,
+    ICStar,
+    ICPLAY,
+    ICBACK
 }

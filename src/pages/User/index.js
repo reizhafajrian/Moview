@@ -2,10 +2,41 @@ import { useTheme } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableHighlight } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { DetailUserItem } from "../../components";
+import { AuthContext } from "../../../Provider";
+import {MemoDetailUserItem} from "../../components/DetailUserItem";
+import { getUser } from "../../utils/Firebase";
 
 export default function User() {
   const { colors } = useTheme();
+  const { signOut } = React.useContext(AuthContext);
+  const [data, setdata] = React.useState([
+    {
+      "email":"johndoe@gmail.com",
+      "name":"john doe",
+      "address":"Jl Margonda",
+      "phone":"0812345678"
+    }
+  ])
+  const api = React.useRef(false);
+
+  const getData = async () => {
+    if (api.current) {
+      const data = await getUser();
+      setdata(data)
+
+      api.current = false;
+    }
+  };
+ 
+  React.useEffect(() => {
+    console.log("tes");
+    api.current=true
+    getData();
+    return () => {
+      api.current = false;
+    };
+  }, [data[0].email]);
+
   return (
     <ScrollView style={styles.pages(colors.pages)}>
       <View
@@ -52,18 +83,19 @@ export default function User() {
           }}
         >
           <View>
-          <Text style={{color:"white",fontSize:30,fontWeight:"500"}}>Reizha Fajrian</Text>
-          <Text style={{color:colors.textGrey,fontSize:15,fontWeight:"500"}}>Developer</Text>
+          <Text style={{color:"white",fontSize:30,fontWeight:"500"}}>{data[0].name}</Text>
+          <Text style={{color:colors.textGrey,fontSize:15,fontWeight:"500"}}>{" "}</Text>
           </View>   
   
-          <DetailUserItem title={`Email :`} name={`Reizha77@gmail.com`} style={false}/>
-          <DetailUserItem title={`Phone :`} name={`081211897997`} style={false}/>
-          <DetailUserItem title={`Address :`} name={`jl.parung belimbing rt 05/17 no 47`} style={false}/>
-          <DetailUserItem title={`Kontribusi`} name={`90`} style={true}/>
-          <View style={{height:28}}/>
+          <MemoDetailUserItem title={`Email :`} name={data[0].email} style={false}/>
+          <MemoDetailUserItem title={`Phone :`} name={data[0].phone} style={false}/>
+          <MemoDetailUserItem title={`Address :`} name={data[0].address} style={false}/>
+
+       
+          <View style={{height:48}}/>
           <View style={{alignItems:"center"}}>
     
-          <TouchableHighlight style={{alignItems:"center",height:30,width:100,justifyContent:"center"}}>
+          <TouchableHighlight style={{alignItems:"center",height:30,width:100,justifyContent:"center"}} onPress={()=>signOut()} >
             <Text style={{color:colors.textSecondary}}>Logout</Text>
           </TouchableHighlight>
                   
